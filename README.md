@@ -7,7 +7,7 @@
 ---
 
 <p align="center">
-  <img src="Images/banner.jpg" width="100%">
+  <img src="Images/banner.png" width="100%">
 </p>
 
 _Analyze website traffic, user engagement, and purchase behavior to answer 8 business questions and turn raw analytics data into clear insights._
