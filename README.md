@@ -378,9 +378,9 @@ The **Q1 2017 conversion funnel** reveals critical optimization opportunities ac
 ## 🗂️ Project Structure
 
 ```text
-E-commerce_Performance_Analysis-main/
+Google-Analytics-Session-Analysis-Using-SQL/
 ├── Images/                             # Screenshots of each query's result
-│   ├── main_banner.jpg
+│   ├── banner.jpg
 │   ├── Query_1_Output.png
 │   ├── Query_2_Output.png
 │   ├── Query_3_Output.png
@@ -390,14 +390,7 @@ E-commerce_Performance_Analysis-main/
 │   ├── Query_7_Output.png
 │   └── Query_8_Output.png
 ├── SQL_Queries/                        # SQL source files for each question
-│   ├── Q1_Monthly_Traffic_Overview.sql
-│   ├── Q2_Bounce_Rate_by_Traffic_Source.sql
-│   ├── Q3_Revenue_by_Traffic_Source.sql
-│   ├── Q4_Avg_Pageviews_Purchaser_Type.sql
-│   ├── Q5_Avg_Transactions_per_User.sql
-│   ├── Q6_Avg_Revenue_per_Session.sql
-│   ├── Q7_Cross_Sell_Analysis.sql
-│   └── Q8_Conversion_Funnel_Cohort.sql
+│   ├── Google-Analytics-Session-Analysis.sql
 └── README.md
 ```
 
