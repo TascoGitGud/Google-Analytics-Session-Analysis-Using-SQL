@@ -437,11 +437,7 @@ To run these queries in **Google BigQuery**:
 3. 📂 **Open BigQuery Console:**
    - Go to [Google Cloud Console - BigQuery](https://console.cloud.google.com/bigquery)
    - Create a new Google Cloud Project if needed
-4. ▶️ **Run the queries:** 
-   - Open the query editor
-   - Copy-paste each `.sql` file from the `SQL_Queries/` folder
-   - Click **"Run"** to execute
-   - Results will appear in seconds
+4. ▶️ Run the queries: Open the BigQuery console, copy each `.sql` file's content from the `SQL_Queries/` folder, and make sure your project context matches the dataset path before running.
 
 **📌 Important Notes:**
 - The dataset uses **table wildcards** (`*`) to query multiple daily shards at once. For example, `ga_sessions_2017*` matches all tables from 2017.
