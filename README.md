@@ -67,7 +67,7 @@ To answer the 8 business questions in this project, **6 core data structures** f
 | **Sessions** | `totals` | `visits`, `pageviews`, `transactions`, `bounces` | Q1, Q2, Q4, Q5, Q6 | Aggregate metrics per session - visits, pageviews, bounce count, transaction count for KPI calculations. |
 | **Sessions** | `trafficSource` | `source` | Q2, Q3 | Identifies traffic channel origin (organic search, direct, referral, paid ads) to analyze channel performance. |
 | **Hits** | `hits` | `eCommerceAction` | Q8 | Unnested to capture individual user actions within a session (product view, add to cart, purchase). |
-| **Hits** | `eCommerceAction` | `action_type` | Q8 | Action type codes ('2'=View, '3'=Add to Cart, '6'=Purchase) to build conversion funnel analysis. |
+| **Hits** | `eCommerceAction` | `action_type` | Q8 | Action type codes (**'2'=View, '3'=Add to Cart, '6'=Purchase**) to build conversion funnel analysis. |
 | **Product** | `product` | `v2ProductName`, `productRevenue`, `productQuantity` | Q3, Q4, Q6, Q7, Q8 | Unnested product-level data to track revenue, quantities sold, and product-specific insights. |
 
 > 🔗 **Full Documentation:** For the complete explanation of all available fields in the GA4 BigQuery export schema, please refer to the [Official Google Analytics BigQuery Export schema](https://support.google.com/analytics/answer/3437719?hl=en).
