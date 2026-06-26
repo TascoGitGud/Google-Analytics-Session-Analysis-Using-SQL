@@ -131,11 +131,11 @@ ORDER BY total_visits DESC
 
 **💡 Observations:**
 
-Google brings in the most visitors with about 38,000 visits, but there's a problem - more than half of these people leave without doing anything. That's a bounce rate of around 51%.
+Google sends the most traffic (38,000 visits) but 51% leave without doing anything. Direct traffic is better with only 43% bounce rate - these are loyal customers.
 
 Direct traffic is different. These are people who come back to the website or type the URL directly. They have a lower bounce rate of about 43%, which means they stay longer and are more likely to buy something.
 
-YouTube is interesting because it sends traffic to the website, but many people from YouTube leave right away - a bounce rate of about 67%. This could mean the content or landing page doesn't match what YouTube viewers are looking for.
+YouTube traffic has the worst bounce rate at 67%, meaning the landing page doesn't match what viewers expect.
 
 The main issue is with Google and YouTube traffic. Even though they send a lot of people, too many of them leave without doing anything. The website should improve the landing pages to make it better for these visitors so more of them will stay and make a purchase.
 
