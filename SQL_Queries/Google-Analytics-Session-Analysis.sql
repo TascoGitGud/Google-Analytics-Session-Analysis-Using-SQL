@@ -157,7 +157,7 @@ WITH
       totals.transactions,
       product.productRevenue
     FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`,
-      UNNEST(hits)    AS hits,
+      UNNEST(hits) AS hits,
       UNNEST(product) AS product
     WHERE _table_suffix BETWEEN '0101' AND '0331'
   ),
