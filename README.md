@@ -190,6 +190,7 @@ Direct traffic makes the most money - about 97,000 in June. These are loyal cust
 Google is second with around 18,700 in revenue. This shows that Google ads are working and worth the investment.
 
 But YouTube and mail.google.com bring traffic that doesn't make money. They send people to the website, but these visitors don't buy anything. So the website should focus on direct traffic and Google, and maybe stop or change YouTube ads because they're not profitable.
+
 ---
 
 ### Query 4: Avg Pageviews - Purchasers vs Non-Purchasers (Jun–Jul 2017)
