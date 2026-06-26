@@ -382,7 +382,7 @@ The **Q1 2017 conversion funnel** reveals critical optimization opportunities ac
 ```text
 Google-Analytics-Session-Analysis-Using-SQL/
 ├── Images/                             # Screenshots of each query's result
-│   ├── banner.jpg
+│   ├── banner.png
 │   ├── Query_1_Output.png
 │   ├── Query_2_Output.png
 │   ├── Query_3_Output.png
