@@ -279,6 +279,7 @@ GROUP BY month
 In July, customers bought an average of 4 times each. This is really good - it means people who buy once come back and buy more.
 
 This could be because of subscriptions, bulk orders, or good product recommendations. Either way, the website should focus on keeping these customers happy with loyalty programs and personalized emails to get them to buy more.
+
 ---
 
 ### Query 6: Avg Revenue per Session (July 2017 – Purchasers Only)
