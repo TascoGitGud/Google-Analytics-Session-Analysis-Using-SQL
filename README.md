@@ -20,6 +20,16 @@ _Analyze website traffic, user engagement, and purchase behavior to answer 8 bus
 
 ---
 
+### 📑 Table of Contents
+
+- [📌 Overview](#-overview)
+- [📂 Dataset](#-dataset)
+- [🔎 Query Repository](#-query-repository)
+- [🗂️ Project Structure](#️-project-structure)
+- [🚀 Setup Instructions](#-setup-instructions)
+
+---
+
 ## 📌 Overview
 
 **Objective:**
@@ -42,14 +52,6 @@ This project uses SQL to analyze website traffic, engagement, and revenue data f
 - **Digital marketing teams** who need insights into traffic source performance and ROI
 - **E-commerce managers & stakeholders** who need quick insights into revenue trends, user engagement, and conversion rates
 - **Business intelligence teams** building dashboards and reporting systems
-
-### 📑 Table of Contents
-
-- [📌 Overview](#-overview)
-- [📂 Dataset](#-dataset)
-- [🔎 Query Repository](#-query-repository)
-- [🗂️ Project Structure](#️-project-structure)
-- [🚀 Setup Instructions](#-setup-instructions)
 
 ---
 
