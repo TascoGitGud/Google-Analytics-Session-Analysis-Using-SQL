@@ -131,7 +131,13 @@ ORDER BY total_visits DESC
 
 **💡 Observations:**
 
-**Google** dominates traffic volume with 38,400 visits but carries a concerning **51.56% bounce rate** - meaning half of Google Search visitors leave without engaging. **(direct)** traffic shows better engagement with a **43.27% bounce rate** and 19,891 visits, indicating brand loyalty from repeat visitors. **YouTube.com** referrals have the highest bounce rate at **66.73%**, suggesting content mismatch or poor landing page experience. Priority should be given to improving landing page quality for high-volume, high-bounce sources like Google and YouTube to recover lost conversion opportunities.
+Google brings in the most visitors with about 38,000 visits, but there's a problem - more than half of these people leave without doing anything. That's a bounce rate of around 51%.
+
+Direct traffic is different. These are people who come back to the website or type the URL directly. They have a lower bounce rate of about 43%, which means they stay longer and are more likely to buy something.
+
+YouTube is interesting because it sends traffic to the website, but many people from YouTube leave right away - a bounce rate of about 67%. This could mean the content or landing page doesn't match what YouTube viewers are looking for.
+
+The main issue is with Google and YouTube traffic. Even though they send a lot of people, too many of them leave without doing anything. The website should improve the landing pages to make it better for these visitors so more of them will stay and make a purchase.
 
 ---
 
@@ -179,8 +185,11 @@ ORDER BY time_type, revenue DESC
 
 **💡 Observations:**
 
-**(direct) traffic** is the **clear revenue champion** with **$97,333.62K in June** - far exceeding all other sources and proving that brand recognition and repeat customers are the largest revenue driver. **Google** ranks second with **$18,757.18K**, validating paid search investment. Weekly breakdown reveals revenue peaks around **Week 23–24**, suggesting mid-to-late June seasonal strength. Surprisingly, high-bounce channels like **YouTube.com** and **mail.google.com** generate negligible revenue (<$200K combined), confirming that bounce rate inversely correlates with conversion intent - these channels require urgent redesign or sunsetting from the media mix.
+Direct traffic makes the most money - about 97,000 in June. These are loyal customers who keep coming back, so they spend more than other visitors.
 
+Google is second with around 18,700 in revenue. This shows that Google ads are working and worth the investment.
+
+But YouTube and mail.google.com bring traffic that doesn't make money. They send people to the website, but these visitors don't buy anything. So the website should focus on direct traffic and Google, and maybe stop or change YouTube ads because they're not profitable.
 ---
 
 ### Query 4: Avg Pageviews - Purchasers vs Non-Purchasers (Jun–Jul 2017)
@@ -235,7 +244,11 @@ ORDER BY month
 
 **💡 Observations:**
 
-A dramatic **engagement gap** exists between purchasers and non-purchasers. In **June (201706)**, purchasers averaged **94.02 pageviews** versus **316.87 for non-purchasers** - counterintuitively, browsers visit 3.4x more pages than buyers. This suggests two distinct user cohorts: **(1) Focused buyers** who know what they want and convert quickly, and **(2) Research-heavy browsers** who lack purchase intent. The July pattern repeats, with purchasers at **124.24 pageviews** vs non-purchasers at **334.06**. The implication: high pageview counts ≠ high conversion probability. Marketing should focus on intent signals (product page time, cart additions) rather than overall pageview volume when targeting high-value prospects.
+In June, people who bought something looked at about 94 pages, but people who didn't buy looked at 317 pages - 3 times more. July shows the same pattern.
+
+This means high pageviews don't mean more sales. Some visitors know what they want and buy quickly. Others just browse without buying.
+
+The website should focus on better signals like time spent on products or cart additions, not just pageview count.
 
 ---
 
@@ -262,8 +275,9 @@ GROUP BY month
 
 **💡 Observations:**
 
-In **July 2017 (201707)**, purchasing users averaged **4.1639 transactions per person** - a notably high repeat purchase rate indicating strong customer loyalty and basket size. This suggests that customers who make one purchase are likely to make 4+ additional purchases within the same month. This behavior points to either **subscription-based repeat purchases**, **bulk order fulfillment**, or **highly effective cross-sell merchandising**. The high repeat rate justifies investment in **loyalty programs, personalized email follow-ups, and cart recommendation engines** to maximize lifetime value from existing purchasers.
+In July, customers bought an average of 4 times each. This is really good - it means people who buy once come back and buy more.
 
+This could be because of subscriptions, bulk orders, or good product recommendations. Either way, the website should focus on keeping these customers happy with loyalty programs and personalized emails to get them to buy more.
 ---
 
 ### Query 6: Avg Revenue per Session (July 2017 – Purchasers Only)
@@ -289,7 +303,9 @@ GROUP BY month
 
 **💡 Observations:**
 
-Purchasing users generated **$43.86 in revenue per visit in July 2017** - a strong monetization metric for an e-commerce site. This indicates that when a user enters with purchase intent, they commit meaningful spend. Benchmarking suggests this is **above-average for merchandise retail** (typically $15–$30 per session). The high revenue-per-visit supports focusing marketing spend on **intent-driven channels** (branded search, email, direct) where users are already pre-disposed to purchase, rather than broad awareness channels with lower conversion intent.
+In July, each customer visit made about $44 in revenue. That's pretty good for an e-commerce site - it means people who come to buy are spending real money.
+
+The website should put more money into marketing channels where people already want to buy, like Google branded search, email, and direct traffic. These channels work better than trying to get random people to visit.
 
 ---
 
@@ -330,7 +346,9 @@ ORDER BY quantity DESC
 
 **💡 Observations:**
 
-Customers who bought the **YouTube Men's Vintage Henley** show strong affinity for **complementary accessories and apparel**. **Google Sunglasses** leads with **20 units** purchased, followed by **Google Women's Vintage Hero Tee** (7 units) and **SPF-15 Slim & Slender Lip Balm** (6 units). This cluster reveals cross-sell opportunities: **Google-branded merchandise** pairs naturally, and **sun protection accessories** (sunglasses, lip balm) align with lifestyle branding. The merchandising team should create **"Frequently Bought Together"** bundles featuring Henley + Sunglasses at a discount, and email campaigns can recommend these products to Henley purchasers, potentially increasing average order value by 15–20%.
+People who bought the YouTube Men's Vintage Henley also bought Google Sunglasses most often (20 times), then the Google Women's Vintage Hero Tee (7 times) and lip balm (6 times).
+
+This shows that customers like Google branded products together. The website should create bundles like "Henley + Sunglasses" with a discount, or send emails to Henley buyers recommending sunglasses. This could make customers spend more per order.
 
 ---
 
@@ -377,7 +395,13 @@ FROM data_count
 
 **💡 Observations:**
 
-The **Q1 2017 conversion funnel** reveals critical optimization opportunities across all three months. **January (201701)** shows 25,787 product views, with only **7,342 add-to-cart actions (28.47% conversion)** and just **2,143 purchases (8.31% final conversion)**. **March (201703)** improves to **37.29% add-to-cart rate** and **12.64% purchase rate** - a 50% improvement in purchase conversion suggests successful checkout/product page optimizations mid-quarter. The **71.53% drop-off from product view to cart** (Jan) indicates either poor product descriptions, pricing concerns, or insufficient trust signals. Immediately actionable fixes: **(1) Add customer reviews & ratings on product pages**, **(2) Implement one-click "Add to Cart"**, **(3) Show stock scarcity alerts** to increase urgency, **(4) Test exit-intent popups with discounts** on the product page to recover the massive view-to-cart leakage.
+In January, 25,787 people looked at products but only 7,342 added items to cart (28%). Even fewer actually bought - just 2,143 (8%).
+
+By March, things got better - 37% added to cart and 13% bought. This shows something changed and worked.
+
+The biggest problem is people looking at products but not adding them to cart. This could be because of bad product descriptions, high prices, or not enough trust.
+
+The website should add customer reviews on product pages, make "Add to Cart" easier, show low stock warnings to create urgency, and offer discounts to people about to leave.
 
 ---
 
