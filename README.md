@@ -105,7 +105,7 @@ The data from the first quarter of 2017 shows that the number of visitors and ac
 
 The most interesting thing is that the number of transactions went up quite a lot - from about 700 to nearly 1,000. This means not only did more people visit the website, but customers also bought more things.
 
-This increase could be because of a promotion or sale in March, or maybe new products were added to the website. Whatever happened, it made customers more likely to make a purchase. We should check what happened in March to understand better why sales went up.
+This increase could be because of a promotion or sale in March, or maybe new products were added to the website. Whatever happened, it made customers more likely to make a purchase. The store should figure out what worked in March and repeat it.
 
 ---
 
