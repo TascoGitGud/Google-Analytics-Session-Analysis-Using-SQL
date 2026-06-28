@@ -378,31 +378,36 @@ Jan: 28% add-to-cart, 8% purchase. Mar: 37% add-to-cart, 13% purchase. Biggest d
 
 ## 🎯 Key Findings
 
-1. **Traffic Growth with Revenue Spike:**
-   - Q1 traffic grew 10% (64K→70K visits) but transactions surged 43% (700→1K), indicating March marketing campaign effectiveness.
-   - **Action:** Replicate successful March tactics.
-2. **Channel Quality Gaps:**
-   - Direct traffic (43% bounce) and Google (51% bounce) dominate volume, but YouTube (67% bounce) bleeds budget without ROI.
-   - **Action:** Reallocate spend to direct + Google branded search.
-3. **Revenue Concentration in Direct:**
-   - Direct traffic generates $97K (June), 5x Google ($18.7K). Non-converting channels (YouTube, referral) waste marketing dollars.
-   - **Action:** Shift to high-intent channels.
-4. **Repeat Purchase Strength:**
-   - Customers average 4 purchases/month ($44 per session), showing strong loyalty. Upsell and bundling opportunities underutilized.
-   - **Action:** Implement loyalty programs and personalized recommendations.
-5. **Engagement ≠ Conversion:**
-   - Non-purchasers view 3x more pages (317 vs 94)—pageviews are poor conversion signal.
-   - **Action:** Focus on quality metrics (time-on-page, add-to-cart rate).
-6. **Cross-Sell Opportunity:**
-   - Henley buyers also buy Sunglasses (20x), Tees (7x), Lip Balm (6x).
-   - **Action:** Bundle complementary products to increase AOV.
-7. **Funnel Bottleneck:**
-   - 72% abandon at product view stage (25.7K views → 7.3K cart adds).
-   - **Action:** Add reviews, simplify add-to-cart, show social proof to improve step-1 conversion.
-8. **Urgent: Cart Abandonment:**
-   - 28% add-to-cart conversion with only 8% purchase (Jan) means 3.5K daily carts abandoned.
-   - **Action:** Implement email recovery sequences and one-click checkout.
+**1. Traffic Growth with Revenue Spike:**
+- Q1 traffic grew 10% (64K→70K visits) but transactions surged 43% (700→1K), indicating March marketing campaign effectiveness.
+- **Action:** Replicate successful March tactics.
 
-**Urgent: Cart Abandonment:** 28% add-to-cart conversion with only 8% purchase (Jan) means 3.5K daily carts abandoned. Implement email recovery sequences and one-click checkout.
+**2. Channel Quality Gaps:**
+- Direct traffic (43% bounce) and Google (51% bounce) dominate volume, but YouTube (67% bounce) bleeds budget without ROI.
+- **Action:** Reallocate spend to direct + Google branded search.
+
+**3. Revenue Concentration in Direct:**
+- Direct traffic generates $97K (June), 5x Google ($18.7K). Non-converting channels (YouTube, referral) waste marketing dollars.
+- **Action:** Shift to high-intent channels.
+ 
+**4. Repeat Purchase Strength:**
+- Customers average 4 purchases/month ($44 per session), showing strong loyalty. Upsell and bundling opportunities underutilized.
+- **Action:** Implement loyalty programs and personalized recommendations.
+ 
+**5. Engagement ≠ Conversion:**
+- Non-purchasers view 3x more pages (317 vs 94)—pageviews are poor conversion signal.
+- **Action:** Focus on quality metrics (time-on-page, add-to-cart rate).
+ 
+**6. Cross-Sell Opportunity:**
+- Henley buyers also buy Sunglasses (20x), Tees (7x), Lip Balm (6x).
+- **Action:** Bundle complementary products to increase AOV.
+ 
+**7. Funnel Bottleneck:**
+- 72% abandon at product view stage (25.7K views → 7.3K cart adds).
+- **Action:** Add reviews, simplify add-to-cart, show social proof to improve step-1 conversion.
+ 
+**8. Urgent: Cart Abandonment:**
+- 28% add-to-cart conversion with only 8% purchase (Jan) means 3.5K daily carts abandoned.
+- **Action:** Implement email recovery sequences and one-click checkout.
 
 ---
