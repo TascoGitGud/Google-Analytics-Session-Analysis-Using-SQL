@@ -393,7 +393,7 @@ Jan: 28% add-to-cart, 8% purchase. Mar: 37% add-to-cart, 13% purchase. Biggest d
 - **Action:** Implement loyalty programs and personalized recommendations.
  
 **5. Engagement ≠ Conversion:**
-- Non-purchasers view 3x more pages (317 vs 94)—pageviews are poor conversion signal.
+- Non-purchasers view 3x more pages (317 vs 94), pageviews are poor conversion signal.
 - **Action:** Focus on quality metrics (time-on-page, add-to-cart rate).
  
 **6. Cross-Sell Opportunity:**
