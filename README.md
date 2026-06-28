@@ -32,13 +32,13 @@ _Analyze website traffic, user engagement, and purchase behavior to answer 8 bus
 
 ## 📌 Overview
 
-**Objective:**
+**🎯 Objective:**
 
 - This project uses SQL (Google BigQuery) to analyze **Google Analytics 4 (GA4)** data from the **Google Merchandise Store** e-commerce website
 - It answers 8 specific business questions covering **Traffic Performance, User Engagement, Revenue Analysis, and Conversion Funnel Optimization**
 - The goal is to turn raw session and event data into clear, actionable insights for marketing and product teams
 
-**Main business question:**
+**❓ Main business question:**
 
 This project uses SQL to analyze website traffic, engagement, and revenue data from Google Analytics to:
 - Track changes in visits, pageviews, and transactions over time
