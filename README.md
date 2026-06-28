@@ -127,7 +127,7 @@ ORDER BY total_visits DESC
 
 **💡 Observations:**
 
-Google sends 38K visits but 51% bounce. YouTube bounces worst at 67%. Direct traffic (43% bounce) converts best—loyal customers. Landing page misalignment for Google/YouTube traffic requires urgent optimization.
+Google sends 38K visits but 51% bounce. YouTube bounces worst at 67%. Direct traffic (43% bounce) converts best-loyal customers. Landing page misalignment for Google/YouTube traffic requires urgent optimization.
 
 ---
 
@@ -258,7 +258,7 @@ GROUP BY month
 
 **💡 Observations:**
 
-Customers average 4 transactions per user in July—strong repeat purchase behavior. Loyalty programs and personalized email recommendations should amplify this.
+Customers average 4 transactions per user in July-strong repeat purchase behavior. Loyalty programs and personalized email recommendations should amplify this.
 
 ---
 
@@ -285,7 +285,7 @@ GROUP BY month
 
 **💡 Observations:**
 
-Each purchasing session generates ~$44 revenue—strong AOV. Prioritize marketing spend on high-intent channels (Google branded search, email, direct).
+Each purchasing session generates ~$44 revenue-strong AOV. Prioritize marketing spend on high-intent channels (Google branded search, email, direct).
 
 ---
 
@@ -387,7 +387,7 @@ Jan: 28% add-to-cart, 8% purchase. Mar: 37% add-to-cart, 13% purchase. Biggest d
 
 **Repeat Purchase Strength:** Customers average 4 purchases/month ($44 per session), showing strong loyalty. Upsell and bundling opportunities underutilized.
 
-**Engagement ≠ Conversion:** Non-purchasers view 3x more pages (317 vs 94)—pageviews are poor conversion signal. Focus on quality metrics (time-on-page, add-to-cart rate).
+**Engagement ≠ Conversion:** Non-purchasers view 3x more pages (317 vs 94)-pageviews are poor conversion signal. Focus on quality metrics (time-on-page, add-to-cart rate).
 
 **Cross-Sell Opportunity:** Henley buyers also buy Sunglasses (20x), Tees (7x), Lip Balm (6x). Bundle complementary products to increase AOV.
 
