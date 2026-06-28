@@ -1,4 +1,4 @@
-# 🛒 Google Analytics Session Analysis | SQL
+# 🚲 Bicycle Manufacturer Performance Analysis | SQL
 
 ![SQL](https://img.shields.io/badge/Language-SQL-3776AB?style=flat-square&logo=sql&logoColor=white)
 ![Google BigQuery](https://img.shields.io/badge/Google_BigQuery-4285F4?style=flat-square&logo=googlebigquery&logoColor=white)
@@ -7,16 +7,16 @@
 ---
 
 <p align="center">
-  <img src="Images/banner.png" width="100%">
+  <img src="Images/main_banner.jpg" width="100%">
 </p>
 
-_Analyze website traffic, user engagement, and purchase behavior to answer 8 business questions and turn raw analytics data into clear insights._
+_Analyze sales, inventory, and purchasing data to answer 8 business questions and turn raw data into clear insights._
 
-- 🎯 **Business Question:** Which traffic sources drive the most revenue - and how do user engagement patterns differ between purchasers and non-purchasers?
-- 🏬 **Domain:** E-commerce & Digital Marketing
+- 🎯 **Business Question:** Which products, territories, and time periods drive the most sales - and where are the risks?
+- 🏬 **Domain:** Manufacturing & Retail
 - 🛠️ **Tools:** SQL (Google BigQuery)
 
-👤 **Author:** Bạch Minh Nam
+👤 Author: Bạch Minh Nam
 
 ---
 
@@ -25,8 +25,7 @@ _Analyze website traffic, user engagement, and purchase behavior to answer 8 bus
 - [📌 Overview](#-overview)
 - [📂 Dataset](#-dataset)
 - [🔎 Query Repository](#-query-repository)
-- [🗂️ Project Structure](#️-project-structure)
-- [🚀 Setup Instructions](#-setup-instructions)
+- [🎯 Key Findings](#-key-findings)
 
 ---
 
@@ -34,96 +33,146 @@ _Analyze website traffic, user engagement, and purchase behavior to answer 8 bus
 
 **Objective:**
 
-- This project uses SQL (Google BigQuery) to analyze **Google Analytics 4 (GA4)** data from the **Google Merchandise Store** e-commerce website
-- It answers 8 specific business questions covering **Traffic Performance, User Engagement, Revenue Analysis, and Conversion Funnel Optimization**
-- The goal is to turn raw session and event data into clear, actionable insights for marketing and product teams
+- This project uses SQL (Google BigQuery) to analyze sales, production, and purchasing data from the **AdventureWorks dataset**
+- It answers 8 specific business questions covering **Sales Performance, Customer Retention, and Inventory Optimization**
+- The goal is to turn raw transactional and operational data into clear, actionable insights for the business
 
 **Main business question:**
 
-This project uses SQL to analyze website traffic, engagement, and revenue data from Google Analytics to:
-- Track changes in visits, pageviews, and transactions over time
-- Evaluate which traffic sources generate the most revenue and engagement
-- Compare user behavior between purchasers and non-purchasers
-- Identify cross-selling opportunities and conversion funnel bottlenecks
+This project uses SQL to analyze sales, inventory, and purchasing data from AdventureWorks to:
+- Identify which product categories, territories, and time periods drive the most sales
+- Evaluate how discounts, customer retention, and stock levels affect overall business performance
 
 **👤 Who is this project for?**
 
-- **Data analysts & business analysts** who want a reference for writing analytical SQL (CTEs, window functions, cohort analysis, UNNEST operations)
-- **Digital marketing teams** who need insights into traffic source performance and ROI
-- **E-commerce managers & stakeholders** who need quick insights into revenue trends, user engagement, and conversion rates
-- **Business intelligence teams** building dashboards and reporting systems
+- **Data analysts & business analysts** who want a reference for writing analytical SQL (CTEs, window functions, cohort analysis)
+- **Decision-makers & stakeholders** who need quick insights into sales trends, inventory health, and supplier performance
 
 ---
 
 ## 📂 Dataset
 
-The analysis is based on **Google Analytics 4 (GA4)** data exported to **Google BigQuery**, representing the **Google Merchandise Store**, a real e-commerce website selling branded merchandise. It contains data on user sessions, page views, product interactions, transactions, and revenue across multiple months in 2017.
+The analysis is based on the **AdventureWorks database**, which represents a large bicycle manufacturing and sales company operating internationally. It contains data on products, customers, sales orders, purchasing, and inventory across many regions.
 
 ### Data Dictionary
 
-To answer the 8 business questions in this project, **6 core data structures** from the GA4 export schema were used. The table below lists only the columns that were actually used in the queries.
+To answer the 8 business questions in this project, **8 tables** from the `Sales`, `Production`, and `Purchasing` schemas were used. The table below lists only the columns that were actually used.
 
-| Schema | Table / Struct | Columns Used | Used In | Purpose |
+| Schema | Table Name | Columns Used | Used In | Purpose |
 | :--- | :--- | :--- | :--- | :--- |
-| **Sessions** | `ga_sessions_2017*` | `date`, `fullVisitorId` | Q1, Q2, Q4, Q5, Q6, Q8 | Base session table tracking unique users and session timestamps for all temporal analysis. |
-| **Sessions** | `totals` | `visits`, `pageviews`, `transactions`, `bounces` | Q1, Q2, Q4, Q5, Q6 | Aggregate metrics per session - visits, pageviews, bounce count, transaction count for KPI calculations. |
-| **Sessions** | `trafficSource` | `source` | Q2, Q3 | Identifies traffic channel origin (organic search, direct, referral, paid ads) to analyze channel performance. |
-| **Hits** | `hits` | `eCommerceAction` | Q8 | Unnested to capture individual user actions within a session (product view, add to cart, purchase). |
-| **Hits** | `eCommerceAction` | `action_type` | Q8 | Action type codes (**'2'=View, '3'=Add to Cart, '6'=Purchase**) to build conversion funnel analysis. |
-| **Product** | `product` | `v2ProductName`, `productRevenue`, `productQuantity` | Q3, Q4, Q6, Q7, Q8 | Unnested product-level data to track revenue, quantities sold, and product-specific insights. |
+| **Sales** | `SalesOrderHeader` | `SalesOrderID`, `OrderDate`, `CustomerID`, `TerritoryID`, `Status`, `ModifiedDate` | Q1, Q2, Q3, Q4, Q5 | Provides order dates, territory IDs, customer IDs, and order status for sales-side queries. |
+| **Sales** | `SalesOrderDetail` | `SalesOrderID`, `ProductID`, `OrderQty`, `LineTotal`, `UnitPrice`, `SpecialOfferID` | Q1, Q2, Q3, Q4, Q7 | Line-item table holding order quantities, revenue, and prices used to calculate sales volume and totals. |
+| **Sales** | `SpecialOffer` | `SpecialOfferID`, `DiscountPct`, `Type` | Q4 | Identifies "Seasonal Discount" offers and their discount percentages to calculate discount cost. |
+| **Production** | `Product` | `ProductID`, `Name`, `ProductSubcategoryID` | Q1, Q2, Q4, Q6, Q7 | Maps product IDs to product names and subcategory IDs. |
+| **Production** | `ProductSubcategory` | `ProductSubcategoryID`, `Name` | Q1, Q2, Q4 | Groups products into subcategories for sales volume and YoY growth comparisons. |
+| **Production** | `WorkOrder` | `ProductID`, `StockedQty`, `ModifiedDate` | Q6, Q7 | Supplies stocked quantities by month, used for stock trend and stock-to-sales ratio. |
+| **Purchasing** | `PurchaseOrderHeader` | `PurchaseOrderID`, `Status`, `TotalDue`, `ModifiedDate` | Q8 | Provides purchase order status and total value to find Pending (`Status = 1`) orders in 2014. |
+| **Purchasing** | `PurchaseOrderDetail` | `PurchaseOrderID` | Q8 | Joined to the purchase order header to count distinct pending purchase orders. |
 
-> 🔗 **Full Documentation:** For the complete explanation of all available fields in the GA4 BigQuery export schema, please refer to the [Official Google Analytics BigQuery Export schema](https://support.google.com/analytics/answer/3437719?hl=en).
+> 🔗 **Full Documentation:** For the complete Data Dictionary of the entire AdventureWorks dataset, see the [AdventureWorks Data Dictionary (PDF)](https://drive.google.com/file/d/1bwwsS3cRJYOg1cvNppc1K_8dQLELN16T/view).
 
 ---
 
 ## 🔎 Query Repository
 
-### Query 1: Monthly Traffic Overview (Jan–Mar 2017)
+### Query 1: Sales Volume L12M
 
-*Question: Calculate total visits, pageviews, and transactions for January, February, and March 2017.*
+*Question: Calc Quantity of items, Sales value & Order quantity by each Subcategory in L12M.*
 
-> _Tracking monthly traffic metrics helps the business understand seasonal demand patterns and measure the impact of marketing campaigns across the first quarter._
+> _Tracking the last 12 months of sales by subcategory helps the business spot which product lines are growing or declining in real time - so inventory and marketing budgets can be adjusted before it's too late._
 
 ```sql
-SELECT 
-  FORMAT_DATE('%Y%m', PARSE_DATE('%Y%m%d', date)) AS month,
-  COUNT(totals.visits) AS visits,
-  SUM(totals.pageviews) AS pageviews,
-  SUM(totals.transactions) AS transactions
-FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`
-WHERE _table_suffix BETWEEN '0101' AND '0331'
-GROUP BY month
-ORDER BY month
+WITH
+  sales_order_with_date AS(
+    SELECT
+      sales_detail.SalesOrderID,
+      sales_detail.ProductID,
+      sales_detail.OrderQty,
+      sales_detail.LineTotal,
+      DATE(sales_header.OrderDate) as order_date,
+      MAX(DATE(sales_header.OrderDate)) OVER() AS last_order_date,
+      DATE_SUB(MAX(DATE(sales_header.OrderDate)) OVER(), INTERVAL 12 MONTH) L12M
+    FROM `adventureworks2019.Sales.SalesOrderDetail` sales_detail
+    INNER JOIN `adventureworks2019.Sales.SalesOrderHeader` sales_header
+    ON sales_detail.SalesOrderID = sales_header.SalesOrderID
+  ),
+  sales_in_L12M AS(
+    SELECT
+      s.SalesOrderID, s.OrderQty, s.LineTotal,	
+      FORMAT_DATE('%b %Y', s.order_date) period,
+      p.ProductSubcategoryID,
+      sub.name AS product_subcategory
+    FROM sales_order_with_date s
+    LEFT JOIN `adventureworks2019.Production.Product` p ON s.ProductID = p.ProductID
+    LEFT JOIN `adventureworks2019.Production.ProductSubcategory` sub ON CAST(p.ProductSubcategoryID AS INT64) = sub.ProductSubcategoryID
+    WHERE order_date >= L12M
+  )
+SELECT
+  period,
+  product_subcategory, 
+  SUM(OrderQty) AS qty_item,
+  ROUND(SUM(LineTotal), 4) as total_sales,
+  COUNT(SalesOrderID) AS oder_cnt
+FROM sales_in_L12M
+GROUP BY period, product_subcategory
+ORDER BY total_sales DESC, product_subcategory;
 ```
 
 **📊 Actual Output:**
-![Query 1 Output](Images/Query_1_Output.png)
+![Query 1 Output](Images/Query_01_Output.png)
 
 **💡 Observations:**
 
-The data from the first quarter of 2017 shows that the number of visitors and activity on the website increased over time. In January, there were around 64,000 visits and 257,000 pageviews. By March, the visits grew to nearly 70,000.
+Road Bikes is the best seller with $2.1M in March 2014 and 2,371 units sold. Touring Bikes and Mountain Bikes also perform well across all months.
 
-The most interesting thing is that the number of transactions went up quite a lot - from about 700 to nearly 1,000. This means not only did more people visit the website, but customers also bought more things.
-
-This increase could be because of a promotion or sale in March, or maybe new products were added to the website. Whatever happened, it made customers more likely to make a purchase. The store should figure out what worked in March and repeat it.
+Road Bikes makes the most money, so the store should focus on keeping this category strong with good inventory and marketing.
 
 ---
 
-### Query 2: Bounce Rate by Traffic Source (July 2017)
+### Query 2: YoY Growth Rate by Category
 
-*Question: Calculate the bounce rate per traffic source in July 2017.*
+*Question: Calc % YoY growth rate by SubCategory & release top 3 cat with highest grow rate. Can use metric: quantity_item. Round results to 2 decimal.*
 
-> _High bounce rates indicate poor landing page relevance or user experience issues. Identifying which traffic sources bounce most helps prioritize optimization efforts and reallocate budget from underperforming channels._
+> _Identifying the top 3 fastest-growing subcategories gives leadership a clear signal of where demand is heading - useful for production planning and deciding where to invest next._
 
 ```sql
-SELECT
-  trafficSource.source AS source,
-  SUM(totals.visits) AS total_visits,
-  SUM(totals.bounces) AS total_no_of_bounces,
-  ROUND(SUM(totals.bounces) / SUM(totals.visits) * 100, 3) AS bounce_rate
-FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`
-GROUP BY source
-ORDER BY total_visits DESC
+WITH
+  sales_with_date AS (
+    SELECT
+      sales_detail.SalesOrderID order_id,
+      sales_detail.ProductID product_id,
+      sales_detail.OrderQty order_qty,
+      DATE(sales_header.OrderDate) as order_date,
+    FROM `adventureworks2019.Sales.SalesOrderDetail` sales_detail
+    INNER JOIN `adventureworks2019.Sales.SalesOrderHeader` sales_header
+      ON sales_detail.SalesOrderID = sales_header.SalesOrderID
+  ),
+  sales_with_date_subcate_name AS (
+    SELECT
+      order_id, product_id, order_qty,
+      EXTRACT(YEAR FROM order_date) order_year,
+      p.ProductSubcategoryID product_subcate_id,
+      sub.Name subcate_name
+    FROM sales_with_date s
+    LEFT JOIN `adventureworks2019.Production.Product` p ON s.product_id = p.ProductID
+    LEFT JOIN `adventureworks2019.Production.ProductSubcategory` sub ON CAST(p.ProductSubcategoryID AS INT64) = sub.ProductSubcategoryID
+  ),
+  qty_sum_by_subcate AS(
+    SELECT order_year, subcate_name, SUM(order_qty) qty_item
+    FROM sales_with_date_subcate_name
+    GROUP BY subcate_name, order_year
+  ),
+qty_growth AS(
+  SELECT
+    a.order_year, a.subcate_name, a.qty_item,
+    b.order_year prev_year, b.qty_item prev_qty_item,
+    ROUND((a.qty_item/b.qty_item - 1), 2) qty_diff,
+    DENSE_RANK() OVER(ORDER BY ROUND((a.qty_item/b.qty_item - 1), 2) DESC) as growth_rank
+  FROM qty_sum_by_subcate a
+  LEFT JOIN qty_sum_by_subcate b ON a.subcate_name = b.subcate_name AND a.order_year = b.order_year + 1
+ )
+SELECT subcate_name Name, qty_item, prev_qty_item prv_qty, qty_diff
+FROM qty_growth WHERE growth_rank <= 3 ORDER BY qty_diff DESC;
 ```
 
 **📊 Actual Output:**
@@ -131,53 +180,37 @@ ORDER BY total_visits DESC
 
 **💡 Observations:**
 
-Google sends the most traffic (38,000 visits) but 51% leave without doing anything. Direct traffic is better with only 43% bounce rate - these are loyal customers.
+Mountain Frames grew the most with 510% more sales. Socks also grew a lot at 421%, and Road Frames at 389%.
 
-Direct traffic is different. These are people who come back to the website or type the URL directly. They have a lower bounce rate of about 43%, which means they stay longer and are more likely to buy something.
-
-YouTube traffic has the worst bounce rate at 67%, meaning the landing page doesn't match what viewers expect.
-
-The main issue is with Google and YouTube traffic. Even though they send a lot of people, too many of them leave without doing anything. The website should improve the landing pages to make it better for these visitors so more of them will stay and make a purchase.
+These three products are selling much better than before, so the store should stock more of them and focus on marketing these fast-growing items.
 
 ---
 
-### Query 3: Revenue by Traffic Source (June 2017 – Weekly & Monthly)
+### Query 3: Top Territories by Year
 
-*Question: Calculate revenue by traffic source by week and by month in June 2017.*
+*Question: Ranking Top 3 TeritoryID with biggest Order quantity of every year. If there's TerritoryID with same quantity in a year, do not skip the rank number.*
 
-> _Breaking revenue down by traffic source and time period reveals which channels are most profitable and when peak revenue occurs. This guides budget allocation and campaign timing decisions._
+> _Knowing which territories consistently drive the most orders helps the sales team prioritize regional resources and flag underperforming areas that may need support._
 
 ```sql
-WITH month_data AS (
-  SELECT
-    'Month' AS time_type,
-    FORMAT_DATE('%Y%m', PARSE_DATE('%Y%m%d', date)) AS month,
-    trafficSource.source AS source,
-    SUM(p.productRevenue) / 1000000 AS revenue
-  FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201706*`,
-    UNNEST(hits) AS hits,
-    UNNEST(product) AS p
-  WHERE p.productRevenue IS NOT NULL
-  GROUP BY 1, 2, 3
-),
-
-week_data AS (
-  SELECT
-    'Week' AS time_type,
-    FORMAT_DATE('%Y%W', PARSE_DATE('%Y%m%d', date)) AS week,
-    trafficSource.source AS source,
-    SUM(p.productRevenue) / 1000000 AS revenue
-  FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201706*`,
-    UNNEST(hits) AS hits,
-    UNNEST(product) AS p
-  WHERE p.productRevenue IS NOT NULL
-  GROUP BY 1, 2, 3
-)
-
-SELECT * FROM month_data
-UNION ALL
-SELECT * FROM week_data
-ORDER BY time_type, revenue DESC
+WITH 
+  territory_vs_order_count AS (
+    SELECT 
+      EXTRACT(YEAR FROM OrderDate) yr,
+      TerritoryID,
+      SUM(OrderQty) order_cnt
+    FROM `adventureworks2019.Sales.SalesOrderDetail` sales_detail
+    INNER JOIN `adventureworks2019.Sales.SalesOrderHeader` sales_header
+      ON sales_detail.SalesOrderID = sales_header.SalesOrderID
+    GROUP BY EXTRACT(YEAR FROM OrderDate), TerritoryID
+  ),
+  ranking_order_quantity AS(
+    SELECT
+      yr, TerritoryID, order_cnt,
+      DENSE_RANK() OVER(PARTITION BY yr ORDER BY order_cnt DESC) rk
+    FROM territory_vs_order_count
+  )
+SELECT * FROM ranking_order_quantity WHERE rk <= 3 ORDER BY yr DESC;
 ```
 
 **📊 Actual Output:**
@@ -185,59 +218,39 @@ ORDER BY time_type, revenue DESC
 
 **💡 Observations:**
 
-Direct traffic makes the most money - about 97,000 in June. These are loyal customers who keep coming back, so they spend more than other visitors.
+Territory 4 is the strongest region every year from 2011 to 2014, growing from 3,238 orders to 11,632 orders - almost 4 times bigger.
 
-Google is second with around 18,700 in revenue. This shows that Google ads are working and worth the investment.
-
-But YouTube and mail.google.com bring traffic that doesn't make money. They send people to the website, but these visitors don't buy anything. So the website should focus on direct traffic and Google, and maybe stop or change YouTube ads because they're not profitable.
+Territory 6 and Territory 1 are always second and third. This pattern is consistent, showing these three regions are the most important and stable for the business.
 
 ---
 
-### Query 4: Avg Pageviews - Purchasers vs Non-Purchasers (Jun–Jul 2017)
+### Query 4: Seasonal Discount Efficiency
 
-*Question: Calculate average number of pageviews by purchaser type (purchasers vs non-purchasers) in June and July 2017.*
+*Question: Calc Total Discount Cost belongs to Seasonal Discount for each SubCategory.*
 
-> _Comparing engagement between buyers and non-buyers reveals the page view threshold needed to drive conversion. Higher pageview counts among purchasers signal deeper product exploration before purchase._
+> _Calculating the total cost of seasonal discounts per subcategory lets the finance team evaluate whether the promotions are worth the margin loss - and which categories are eating the most discount budget._
 
 ```sql
 WITH
-  base AS (
+  combined_sales_info AS(
     SELECT
-      FORMAT_DATE('%Y%m', PARSE_DATE('%Y%m%d', date)) AS month,
-      totals.transactions,
-      product.productRevenue,
-      totals.pageviews,
-      fullVisitorId
-    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`,
-      UNNEST(hits) AS hits,
-      UNNEST(product) AS product
-    WHERE _table_suffix BETWEEN '0601' AND '0731'
+      detail.ProductID, product.ProductSubcategoryID, subcate.Name subcate_name,
+      header.OrderDate order_date, detail.OrderQty order_qnt, detail.UnitPrice unit_price,
+      detail.SpecialOfferID, offer.DiscountPct discount_pct, offer.Type discount_type
+    FROM `adventureworks2019.Sales.SalesOrderDetail` detail
+    INNER JOIN `adventureworks2019.Sales.SalesOrderHeader` header ON detail.SalesOrderID = header.SalesOrderID
+    INNER JOIN `adventureworks2019.Sales.SpecialOffer` offer ON detail.SpecialOfferID = offer.SpecialOfferID
+    INNER JOIN `adventureworks2019.Production.Product` product ON detail.ProductID = product.ProductID
+    INNER JOIN `adventureworks2019.Production.ProductSubcategory` subcate ON CAST(product.ProductSubcategoryID AS INT64) = subcate.ProductSubcategoryID
   ),
-
-  purchase AS (
+  calculated_discount_cost AS(
     SELECT
-      month,
-      ROUND(SUM(pageviews) / COUNT(DISTINCT fullVisitorId), 8) AS avg_pageviews_purchase
-    FROM base
-    WHERE transactions >= 1 
-      AND productRevenue IS NOT NULL
-    GROUP BY month
-  ),
-
-  non_purchase AS (
-    SELECT
-      month,
-      ROUND(SUM(pageviews) / COUNT(DISTINCT fullVisitorId), 8) AS avg_pageviews_non_purchase
-    FROM base
-    WHERE transactions IS NULL
-      AND productRevenue IS NULL
-    GROUP BY month
+      EXTRACT(YEAR FROM order_date) year, subcate_name,
+      (discount_pct * unit_price * order_qnt) discount_cost
+    FROM combined_sales_info WHERE discount_type = 'Seasonal Discount'
   )
-
-SELECT *
-FROM purchase
-FULL JOIN non_purchase USING (month)
-ORDER BY month
+SELECT year, subcate_name, SUM(discount_cost) total_cost
+FROM calculated_discount_cost GROUP BY year, subcate_name ORDER BY year;
 ```
 
 **📊 Actual Output:**
@@ -245,30 +258,40 @@ ORDER BY month
 
 **💡 Observations:**
 
-In June, people who bought something looked at about 94 pages, but people who didn't buy looked at 317 pages - 3 times more. July shows the same pattern.
+Helmets is the only product getting discounts. The discount cost doubled from $828 in 2012 to $1,606 in 2013.
 
-This means high pageviews don't mean more sales. Some visitors know what they want and buy quickly. Others just browse without buying.
-
-The website should focus on better signals like time spent on products or cart additions, not just pageview count.
+The store should check if these discounts are actually bringing more sales and profit, or if they're just cutting into margins without enough benefit.
 
 ---
 
-### Query 5: Avg Transactions per Purchasing User (July 2017)
+### Query 5: Cohort Retention Rate
 
-*Question: Calculate the average number of transactions per user that made a purchase in July 2017.*
+*Question: Retention rate of Customer in 2014 with status of Successfully Shipped (Cohort Analysis).*
 
-> _Understanding repeat purchase frequency within a month reveals customer loyalty and multi-purchase behavior. Higher repeat rates indicate strong product satisfaction and cross-sell success._
+> _Cohort retention shows exactly when customers stop coming back after their first purchase - giving the CRM team a window to step in with re-engagement campaigns before churn becomes permanent._
 
 ```sql
-SELECT
-  FORMAT_DATE('%Y%m', PARSE_DATE('%Y%m%d', date)) AS month,
-  ROUND(SUM(totals.transactions) / COUNT(DISTINCT fullVisitorId), 4) AS avg_total_transactions_per_user
-FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
-  UNNEST(hits) AS hits,
-  UNNEST(product) AS product
-WHERE totals.transactions >= 1
-  AND product.productRevenue IS NOT NULL
-GROUP BY month
+WITH successful_order AS (
+    SELECT  
+      EXTRACT(MONTH FROM ModifiedDate) order_month, CustomerID customer_id
+    FROM `adventureworks2019.Sales.SalesOrderHeader` 
+    WHERE EXTRACT(YEAR FROM ModifiedDate) = 2014 AND Status = 5 ORDER BY customer_id, order_month
+),
+rank_time_order AS (
+    SELECT *, ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY order_month) order_time
+    FROM successful_order
+),
+first_order AS (
+    SELECT order_month AS month_join, customer_id
+    FROM rank_time_order WHERE order_time = 1
+),
+find_month_diff AS (
+    SELECT distinct order_month, month_join, a.customer_id, (order_month - month_join) month_diff_num
+    FROM successful_order a INNER JOIN first_order b ON a.customer_id = b.customer_id
+    ORDER BY month_join, order_month
+)
+SELECT month_join, CONCAT('M-',month_diff_num) month_diff, COUNT(customer_id) customer_count
+FROM find_month_diff GROUP BY month_join, CONCAT('M-',month_diff_num) ORDER BY month_join, month_diff;
 ```
 
 **📊 Actual Output:**
@@ -276,71 +299,80 @@ GROUP BY month
 
 **💡 Observations:**
 
-In July, customers bought an average of 4 times each. This is really good - it means people who buy once come back and buy more.
+Most customers only buy once. In the first month, 2,076 people bought, but by the next month only 78 came back - a huge drop.
 
-This could be because of subscriptions, bulk orders, or good product recommendations. Either way, the website should focus on keeping these customers happy with loyalty programs and personalized emails to get them to buy more.
-
----
-
-### Query 6: Avg Revenue per Session (July 2017 – Purchasers Only)
-
-*Question: Calculate the average amount of money spent per session (purchasers only) in July 2017.*
-
-> _Revenue per session reveals the monetary value each visit generates. Higher values indicate strong product pricing, effective upselling, or high-value customer segments._
-
-```sql
-SELECT
-  FORMAT_DATE('%Y%m', PARSE_DATE('%Y%m%d', date)) AS month,
-  ROUND((SUM(product.productRevenue) / SUM(totals.visits)) / 1000000, 2) AS avg_revenue_by_user_per_visit
-FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
-  UNNEST(hits) AS hits,
-  UNNEST(product) AS product
-WHERE totals.transactions >= 1
-  AND product.productRevenue IS NOT NULL
-GROUP BY month
-```
-
-**📊 Actual Output:**
-![Query 6 Output](Images/Query_6_Output.png)
-
-**💡 Observations:**
-
-In July, each customer visit made about $44 in revenue. That's pretty good for an e-commerce site - it means people who come to buy are spending real money.
-
-The website should put more money into marketing channels where people already want to buy, like Google branded search, email, and direct traffic. These channels work better than trying to get random people to visit.
+But at month 3, more customers come back to buy again (around 250). This might be a seasonal pattern, so the store should send emails or offers to bring customers back at that time.
 
 ---
 
-### Query 7: Cross-Sell Analysis – "YouTube Men's Vintage Henley" (July 2017)
+### Query 6: Stock Trend MoM
 
-*Question: Calculate other products purchased by customers who also bought "YouTube Men's Vintage Henley" in July 2017.*
+*Question: Trend of Stock level & MoM diff % by all product in 2011. If %gr rate is null then 0. Round to 1 decimal.*
 
-> _Market basket analysis identifies which products are frequently purchased together. This drives product bundling, upsell strategies, and personalized recommendation engine training._
+> _Month-over-month stock changes reveal whether inventory is building up or running low for each product - helping the warehouse team avoid both overstock and stockout situations._
 
 ```sql
 WITH
-  buyer_list AS (
-    SELECT DISTINCT fullVisitorId
-    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
-      UNNEST(hits) AS hits,
-      UNNEST(product) AS product
-    WHERE product.v2ProductName = "YouTube Men's Vintage Henley"
-      AND totals.transactions >= 1
-      AND product.productRevenue IS NOT NULL
+  stock_info_2011 AS (
+    SELECT 
+      EXTRACT(YEAR FROM o.ModifiedDate) yr, EXTRACT(MONTH FROM o.ModifiedDate) mth,
+      StockedQty, o.ProductID, p.Name product_name
+    FROM `adventureworks2019.Production.WorkOrder` o
+    INNER JOIN `adventureworks2019.Production.Product` p ON o.ProductID = p.ProductID
+    WHERE EXTRACT(YEAR FROM o.ModifiedDate) = 2011  
+  ),
+  sum_stock_qty AS(
+    SELECT product_name, mth, yr, SUM(StockedQty) stock_qty
+    FROM stock_info_2011 GROUP BY product_name, mth, yr
   )
-
 SELECT
-  product.v2ProductName AS other_purchased_products,
-  SUM(product.productQuantity) AS quantity
-FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
-  UNNEST(hits) AS hits,
-  UNNEST(product) AS product
-JOIN buyer_list USING (fullVisitorId)
-WHERE product.v2ProductName != "YouTube Men's Vintage Henley"
-  AND product.productRevenue IS NOT NULL
-  AND totals.transactions >= 1
-GROUP BY other_purchased_products
-ORDER BY quantity DESC
+  a.product_name, a.mth, a.yr, a.stock_qty, b.stock_qty AS stock_prv,
+  IFNULL(ROUND((a.stock_qty / b.stock_qty - 1) *100.0,1), 0) diff
+FROM sum_stock_qty a
+LEFT JOIN sum_stock_qty b ON a.product_name = b.product_name AND a.mth = b.mth + 1 
+ORDER BY a.stock_qty DESC;
+```
+
+**📊 Actual Output:**
+![Query 6 Output](Images/Query_06_Output.png)
+
+**💡 Observations:**
+
+In July 2011, some mountain frames suddenly got much more stock - like HL Mountain Frame Silver jumped from 5 to 59 units. This looks like a reaction to running out, not planned ordering.
+
+The store should use better demand forecasting so they stock products before they run out, instead of scrambling to restock later.
+
+---
+
+### Query 7: Stock-to-Sales Ratio
+
+*Question: Calc Ratio of Stock / Sales in 2011 by product name, by month. Order results by month desc, ratio desc. Round Ratio to 1 decimal.*
+
+> _A high stock-to-sales ratio means the company is holding more inventory than it's selling - tying up cash. This query flags which products need faster turnover or reduced production._
+
+```sql
+WITH 
+  sales_2011 AS(
+    SELECT 
+      EXTRACT (MONTH FROM OrderDate) mth, EXTRACT (year FROM OrderDate) yr,
+      detail.ProductID, p.Name, SUM(OrderQty) sales
+    FROM `adventureworks2019.Sales.SalesOrderDetail` detail
+    INNER JOIN `adventureworks2019.Sales.SalesOrderHeader` header ON detail.SalesOrderID = header.SalesOrderID
+    INNER JOIN `adventureworks2019.Production.Product` p ON detail.ProductID = p.ProductID
+    WHERE EXTRACT (year FROM OrderDate) = 2011 GROUP BY 1, 2, 3, 4
+  ),
+  stock_2011 AS (
+    SELECT 
+      EXTRACT(MONTH FROM o.ModifiedDate) mth, EXTRACT(YEAR FROM o.ModifiedDate) yr,
+      o.ProductID, p.Name product_name, SUM(StockedQty) stock
+    FROM `adventureworks2019.Production.WorkOrder` o
+    INNER JOIN `adventureworks2019.Production.Product` p ON o.ProductID = p.ProductID
+    WHERE EXTRACT(YEAR FROM o.ModifiedDate) = 2011 GROUP BY 1,2,3,4)
+SELECT
+  sa.mth, sa.yr, sa.ProductId, sa.Name, sales, stock, ROUND((stock/sales), 1) ratio
+FROM sales_2011 sa
+LEFT JOIN stock_2011 st ON sa.mth = st.mth AND sa.productID = st.productID
+ORDER BY 1 DESC, 7 DESC;
 ```
 
 **📊 Actual Output:**
@@ -348,48 +380,28 @@ ORDER BY quantity DESC
 
 **💡 Observations:**
 
-People who bought the YouTube Men's Vintage Henley also bought Google Sunglasses most often (20 times), then the Google Women's Vintage Hero Tee (7 times) and lip balm (6 times).
+In December 2011, some products have way too much stock. HL Mountain Frame Black has 27 units in stock but only sold 1 - that's 27 times more stock than needed.
 
-This shows that customers like Google branded products together. The website should create bundles like "Henley + Sunglasses" with a discount, or send emails to Henley buyers recommending sunglasses. This could make customers spend more per order.
+This shows the store ordered too much of these frames. They should reduce orders for these products and focus on items that sell faster.
 
 ---
 
-### Query 8: E-Commerce Conversion Funnel (Jan–Mar 2017)
+### Query 8: Pending Orders Breakdown
 
-*Question: Generate a cohort map of the checkout funnel (Product View → Add to Cart → Purchase) for Jan–Mar 2017.*
+*Question: No of order and value at Pending status in 2014.*
 
-> _Conversion funnel analysis identifies where users drop off during the purchase journey. High drop-off rates at specific funnel stages highlight optimization priorities (e.g., cart abandonment recovery, checkout simplification)._
+> _Pending purchase orders represent committed but undelivered spend - tracking their total value helps the procurement team manage cash flow and follow up with suppliers before delays impact production._
 
 ```sql
-WITH
-  data_overview AS (
-    SELECT
-      FORMAT_DATE('%Y%m', PARSE_DATE('%Y%m%d', date)) AS month,
-      eCommerceAction.action_type AS action_type,
-      totals.transactions,
-      product.productRevenue
-    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`,
-      UNNEST(hits) AS hits,
-      UNNEST(product) AS product
-    WHERE _table_suffix BETWEEN '0101' AND '0331'
-  ),
-
-  data_count AS (
-    SELECT
-      month,
-      COUNTIF(action_type = '2') AS num_product_view,
-      COUNTIF(action_type = '3') AS num_addtocart,
-      COUNTIF(action_type = '6' AND productRevenue IS NOT NULL) AS num_purchase
-    FROM data_overview
-    GROUP BY month
-    ORDER BY month
-  )
-
 SELECT
-  *,
-  ROUND(num_addtocart / num_product_view * 100.0, 2) AS add_to_cart_rate,
-  ROUND(num_purchase  / num_product_view * 100.0, 2) AS purchase_rate
-FROM data_count
+  EXTRACT(YEAR FROM header.ModifiedDate) yr, Status,
+  COUNT(DISTINCT header.PurchaseOrderID) order_cnt,
+  SUM(TotalDue) value
+FROM `adventureworks2019.Purchasing.PurchaseOrderDetail` detail 
+LEFT JOIN `adventureworks2019.Purchasing.PurchaseOrderHeader` header
+  ON detail.PurchaseOrderID = header.PurchaseOrderID
+WHERE EXTRACT(YEAR FROM header.ModifiedDate) = 2014 AND Status = 1
+GROUP BY 1,2;
 ```
 
 **📊 Actual Output:**
@@ -397,51 +409,31 @@ FROM data_count
 
 **💡 Observations:**
 
-In January, 25,787 people looked at products but only 7,342 added items to cart (28%). Even fewer actually bought - just 2,143 (8%).
+In 2014, there are 224 orders waiting to be delivered worth about $9.27M. This is a lot of money sitting in pending orders.
 
-By March, things got better - 37% added to cart and 13% bought. This shows something changed and worked.
-
-The biggest problem is people looking at products but not adding them to cart. This could be because of bad product descriptions, high prices, or not enough trust.
-
-The website should add customer reviews on product pages, make "Add to Cart" easier, show low stock warnings to create urgency, and offer discounts to people about to leave.
+The store should check with suppliers to make sure these orders arrive on time, so production and sales don't get delayed.
 
 ---
 
-## 🗂️ Project Structure
+## 🎯 Key Findings
 
-```text
-Google-Analytics-Session-Analysis-Using-SQL/
-├── Images/                             # Screenshots of each query's result
-│   ├── banner.png
-│   ├── Query_1_Output.png
-│   ├── Query_2_Output.png
-│   ├── Query_3_Output.png
-│   ├── Query_4_Output.png
-│   ├── Query_5_Output.png
-│   ├── Query_6_Output.png
-│   ├── Query_7_Output.png
-│   └── Query_8_Output.png
-├── SQL_Queries/                        # SQL source files for each question
-│   ├── Google-Analytics-Session-Analysis.sql
-└── README.md
-```
+**Revenue Concentration:** Road Bikes dominates sales ($2.1M in March 2014), but only 3 product categories (Road, Mountain, Touring Bikes) generate ~80% of revenue. **Action:** Diversify product portfolio to reduce dependency.
 
----
+**Fast-Growing Segments:** Mountain Frames (+510%), Socks (+421%), and Road Frames (+389%) show explosive growth. **Action:** Increase production capacity and marketing budget immediately.
 
-## 🚀 Setup Instructions
+**Territorial Dominance:** Territory 4 is 4x stronger than others (3,238→11,632 orders, 2011-2014). **Action:** Investigate success factors and replicate in underperforming territories.
 
-To run these queries in **Google BigQuery**:
+**Discount Inefficiency:** Only Helmets receive seasonal discounts ($828→$1,606), but profitability impact unclear. **Action:** Conduct ROI analysis before expanding discount programs.
 
-1. ☁️ **Set up a Google Cloud Platform (GCP) account:** Create one if you don't have it yet, and enable the BigQuery API.
-2. 📥 **Access the public dataset:** The `bigquery-public-data.google_analytics_sample.ga_sessions_2017*` dataset is **publicly available** to all GCP users - no setup or data loading required.
-3. 📂 **Open BigQuery Console:**
-   - Go to [Google Cloud Console - BigQuery](https://console.cloud.google.com/bigquery)
-   - Create a new Google Cloud Project if needed
-4. ▶️ Run the queries: Open the BigQuery console, copy each `.sql` file's content from the `SQL_Queries/` folder, and make sure your project context matches the dataset path before running.
+**Customer Retention Crisis:** 96% of 2014 customers never returned (2,076→78 by month 2). Seasonal uptick at month 3 suggests opportunity. **Action:** Launch re-engagement campaigns timed to seasonal patterns.
 
-**📌 Important Notes:**
-- The dataset uses **table wildcards** (`*`) to query multiple daily shards at once. For example, `ga_sessions_2017*` matches all tables from 2017.
-- Use the `_table_suffix BETWEEN '0101' AND '0331'` syntax to filter by date ranges without loading the entire year.
-- The `UNNEST()` function is required to flatten nested arrays (hits, product) into a queryable format.
+**Poor Inventory Planning:** Stock surges (HL Mountain Frame: 5→59 units) indicate reactive restocking, not demand forecasting. **Action:** Implement predictive ordering system to avoid stock-outs.
 
----
+**Excess Stock Levels:** Stock-to-sales ratio >20x for slow-moving frames (27 units in stock, 1 sold). **Action:** Free up $M+ in working capital by reducing overstock.
+
+**Supply Chain Risk:** $9.27M in 224 pending purchase orders (2014) pose production delay risks. **Action:** Establish supplier SLA monitoring to prevent pipeline breaks.
+
+
+
+**Last Updated:** June 2026  
+**Status:** ✅ Complete and Production-Ready
