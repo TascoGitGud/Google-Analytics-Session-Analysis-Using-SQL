@@ -376,27 +376,19 @@ Jan: 28% add-to-cart, 8% purchase. Mar: 37% add-to-cart, 13% purchase. Biggest d
 
 ## 🎯 Key Findings
 
-### 1. Traffic Quality & Media Mix Optimization
-
-*   **High-Intent Channel Dominance:** Direct traffic ($97K in June) and Google Search ($18.7K) are the undisputed revenue anchors of the platform. Conversely, channels like YouTube drive massive visit volume but yield an alarming **67% bounce rate** and near-zero conversion.
-    *   *Action:* Immediately reallocate marketing budgets away from broad YouTube/referral awareness campaigns and double down on high-ROI channels like Direct re-engagement and Google Branded Search.
-*   **The March Performance Spike:** While Q1 traffic grew organically by a modest 10% (64K to 70K visits), transactions surged exponentially by **43% (700 to nearly 1K)** in March alone.
-    *   *Action:* Conduct a historical review of the creative elements, promotional offers, or product drops executed in March to systematize and replicate this exact high-conversion playbook.
-
-### 2. On-Site Engagement & Conversion Funnel Guardrails
-
-*   **The Engagement Paradox:** Non-purchasers view **3x more pages** (317 pages in June) than successful buyers (94 pages), indicating that high pageview volume is a symptom of user friction or confusion, not buying intent.
-    *   *Action:* Pivot UX success metrics away from raw pageviews. Instead, optimize for high-intent actions like time-on-key-landing-pages and swift paths to the checkout sequence.
-*   **The Top-of-Funnel Leak:** The single biggest breakdown in the conversion journey occurs right at the start—**72% of users abandon the funnel immediately after viewing a product** without ever adding it to their cart.
-    *   *Action:* Redesign product detail pages (PDPs) by integrating robust social proof (customer reviews), minimizing layout friction, and utilizing urgency nudges (e.g., low-stock indicators).
-*   **Cart Abandonment Revenue Drain:** Even when users add items to their carts, a steep drop-off persists (e.g., a 28% add-to-cart rate collapsing into a meager 8% ultimate purchase rate in January).
-    *   *Action:* Deploy automated abandoned cart recovery email sequences and implement a streamlined, one-click checkout process to recapture these hot leads.
-
-### 3. Customer Lifetime Value (LTV) & Product Synergy
-
-*   **High Loyalty and Repeat Purchasing:** Customers who cross the purchase threshold exhibit exceptional loyalty, averaging **4 separate transactions within July** and generating an impressive Average Order Value (AOV) of ~$44 per session.
-    *   *Action:* Capitalize on this organic loyalty by establishing a formal VIP program and utilizing personalized post-purchase email recommendations to maximize customer retention.
-*   **Data-Driven Cross-Selling Opportunities:** Market basket analysis reveals clear affinity patterns: buyers of the *"YouTube Men's Vintage Henley"* frequently cross-purchase Sunglasses (20x), Hero Tees (7x), and Lip Balm (6x).
-    *   *Action:* Construct automated product bundles and pre-checkout recommendation widgets pairing these specific complementary items together to naturally lift platform-wide AOV.
+**1. High-Intent Channels Drive Revenue**
+Direct traffic ($97K) and Google Search ($18.7K) dominate. YouTube drives visits but 67% bounce rate and zero conversions. **→ Action:** Reallocate budget from low-ROI to high-intent channels.
+ 
+**2. March Performance Spike**
+Q1 visits +10%, but March transactions +43%. **→ Action:** Analyze March marketing drivers and systematize the playbook.
+ 
+**3. The Engagement Paradox**
+Non-purchasers view 3x more pages (317) than buyers (94). High pageviews = user friction, not intent. **→ Action:** Optimize for quality engagement, not page quantity.
+ 
+**4. Top-of-Funnel Leak**
+72% of users abandon after viewing a product without adding to cart. **→ Action:** Improve PDPs with reviews, reduce friction, add urgency nudges.
+ 
+**5. Strong Repeat Purchase & Cross-Sell**
+Customers average 4 transactions/month ($44 AOV). Henley buyers also purchase Sunglasses (20x), Hero Tees (7x). **→ Action:** Build loyalty program and bundle complementary products.
 
 ---
